@@ -31,10 +31,10 @@ custom_stopwords =  { "a", "an", "the", "and", "or", "but", "if", "of", "at",
 
 
 
+words = [word for word in text.split() if word not in custom_stopwords] # Remove custom_stopwords
+
 # if you choose to go with default stopwords
 text = ' '.join([word for word in words if word not in stopwords.words('english')])  # Removing English language stopwords
 
 
 
-# Remove custom_stopwords
-    words = [word for word in text.split() if word not in custom_stopwords]
