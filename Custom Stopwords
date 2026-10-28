@@ -1,0 +1,38 @@
+# to use regular expressions for manipulating text data
+import re
+
+# to load the natural language toolkit
+import nltk
+nltk.download('stopwords')    # loading the stopwords
+nltk.download('wordnet')    # loading the wordnet module that is used in stemming
+
+# to remove common stop words
+from nltk.corpus import stopwords
+
+# to perform stemming
+from nltk.stem.porter import PorterStemmer
+
+# To encode the target variable
+from sklearn.preprocessing import LabelEncoder
+
+# custom stopwords
+custom_stopwords =  { "a", "an", "the", "and", "or", "but", "if", "of", "at",
+                     "by", "for", "with", "about", "to", "from", "in", "on", "off", "over", "under", "again",
+                     "then", "once", "here", "there", "when", "where", "why", "how", "all", "any", "both", "each", "few",
+                     "more", "most", "other", "some", "such", "own", "same", "so", "than", "too", "very", "can", "just", "should",
+                     "now", "i", "me", "my", "myself", "we", "our", "you", "your", "he", "him", "his", "she", "her", "it", "its",
+                     "they", "them", "their", "what", "which", "who", "this", "that", "these", "those", "am", "is", "are", "was",
+                     "were", "be", "been", "being", "have", "has", "had", "do", "does", "did", "will", "would", "could", "as",
+                     "into", "through", "during", "before", "after", "hi", "hello", "dear", "regards", "thanks", "thank", "please",
+                     "kindly", "team", "support", "sir", "madam","pm", "am", "re", "ext", "en", "ctrl", "alt", "os",
+                     "importance", "high", "low", "medium",
+                      "sent", "monday", "tuesday", "wednesday", "thursday", "friday",
+                      "saturday", "sunday", "january", "february", "march", "april",
+                      "may", "june", "july", "august", "september", "october",
+                      "november", "december",
+                      "mobile", "phone", "best", "good", "kind", }
+
+
+
+# Remove custom_stopwords
+    words = [word for word in text.split() if word not in custom_stopwords]
