@@ -202,5 +202,6 @@ This project is for educational purposes. Add a license of your choice (e.g. MIT
 
 
 
-Author
-A Mohamed Rifakath Ali
+# Author
+
+**A Mohamed Rifakath Ali**
