@@ -1,0 +1,55 @@
+We use NLTK in Python because it provides a comprehensive, open-source toolkit for processing and analyzing human language. 
+Its combination of text processing libraries, corpora, and pre-trained models makes it ideal for learning, research, and practical NLP applications 
+
+# to load the natural language toolkit
+import nltk
+nltk.download('stopwords')    # loading the stopwords
+nltk.download('wordnet')    # loading the wordnet module that is used in stemming
+from nltk.corpus import stopwords # to remove common stop words
+from nltk.stem.porter import PorterStemmer # to perform stemming
+import re # to use regular expressions for manipulating text data
+
+
+# **Data Preprocessing using NLTK**
+def preprocess_text(text):
+    if pd.isna(text):
+        return text
+
+    # Convert to lowercase
+    text = text.lower()
+
+    # Remove special characters and numbers
+    text = re.sub(r'[^A-Za-z\s]', '', text)
+
+    # Remove extra whitespaces
+    text = re.sub(r'\s+', ' ', text).strip()
+
+    # Remove custom_stopwords
+    words = [word for word in text.split() if word not in custom_stopwords]
+
+    # Applying the Porter Stemmer on every word and joining back into a single string
+    text = ' '.join([ps.stem(word) for word in words])
+
+    # Remove consecutively repeated words (e.g. "icon icon" -> "icon")
+    text = re.sub(r'\b(\w+)( \1\b)+', r'\1', text, flags=re.IGNORECASE)
+
+    # Remove "sent <day> <month>" timestamp patterns
+    text = re.sub(r'\bsent\s+\w+\s+\w+\b', ' ', text, flags=re.IGNORECASE)
+
+    # Remove "importance high/low/medium"
+    text = re.sub(r'\bimportance\s+(high|low|medium)\b', ' ', text, flags=re.IGNORECASE)
+
+    # Remove extension references like "ext 1234"
+    text = re.sub(r'\bext\s*\d*\b', ' ', text, flags=re.IGNORECASE)
+
+    return text
+
+
+
+# preprocessing the textual column
+dataset['Article_text_clean'] = dataset['Document'].apply(preprocess_text)
+
+-----Explaination----
+dataset['Article_text_clean'] ---> Creates a new column in dataset named as 'Article_text_clean'
+dataset['Document'] ----> Specifying the column which is present in the dataset where we going to apply preprocessing
+.apply(preprocess_text) ----> Apply function applies the preprocessing step to all the rows of the specific column 
