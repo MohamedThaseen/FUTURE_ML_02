@@ -12,9 +12,6 @@ from nltk.corpus import stopwords
 # to perform stemming
 from nltk.stem.porter import PorterStemmer
 
-# To encode the target variable
-from sklearn.preprocessing import LabelEncoder
-
 # custom stopwords
 custom_stopwords =  { "a", "an", "the", "and", "or", "but", "if", "of", "at",
                      "by", "for", "with", "about", "to", "from", "in", "on", "off", "over", "under", "again",
